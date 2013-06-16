@@ -41,4 +41,12 @@ public class WikiEngineTest {
 		assertThat(sut.getText("== TDD = BC =="), is("<H2>TDD = BC</H2>"));
 		assertThat(sut.getText("==\tTDD = BC =="), is("<H2>TDD = BC</H2>"));
 	}
+	
+	@Test
+	public void testアンダーバーで括られた文字列をイタリックで修飾() {
+		assertThat(sut.getText("_TDDBC_"), is("<i>TDDBC</i>"));
+		assertThat(sut.getText("_ TDDBC _"), is("<i> TDDBC </i>"));
+		assertThat(sut.getText("__"), is("<i></i>"));
+		assertThat(sut.getText("_ _"), is("<i> </i>"));
+	}
 }
