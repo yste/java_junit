@@ -17,12 +17,12 @@ public class WikiEngineTest {
 
 	
 	@Test
-	public void test�L�@�֌W�Ȃ��ɕ�����Ԃ�() {
+	public void test記法関係なしに文字を返す() {
 		assertThat(sut.getText("text"), is("text"));
 	}
-	
+
 	@Test
-	public void test�C�R�[���Ŋ���ꂽ�������H1�^�O�Ŋ���ꂽ�������Ԃ�() {
+	public void testイコールで括られた文字列にH1タグで括られた文字列を返す() {
 		assertThat(sut.getText("= TDDBC ="), is("<H1>TDDBC</H1>"));
 		assertThat(sut.getText("=TDDBC="), is("<H1>TDDBC</H1>"));
 		assertThat(sut.getText("=   TDDBC   ="), is("<H1>TDDBC</H1>"));
@@ -31,9 +31,9 @@ public class WikiEngineTest {
 		assertThat(sut.getText("=\tTDD = BC ="), is("<H1>TDD = BC</H1>"));
 		assertThat(sut.getText("= = TDDBC = ="), is("<H1>= TDDBC =</H1>"));
 	}
-	
+
 	@Test
-	public void test�C�R�[��2�Ŋ���ꂽ�������H2�^�O�Ŋ���ꂽ�������Ԃ�() {
+	public void testイコール2つで括られた文字列にH2タグで括られた文字列を返す() {
 		assertThat(sut.getText("== TDDBC =="), is("<H2>TDDBC</H2>"));
 		assertThat(sut.getText("==TDDBC=="), is("<H2>TDDBC</H2>"));
 		assertThat(sut.getText("==   TDDBC   =="), is("<H2>TDDBC</H2>"));
@@ -41,9 +41,9 @@ public class WikiEngineTest {
 		assertThat(sut.getText("== TDD = BC =="), is("<H2>TDD = BC</H2>"));
 		assertThat(sut.getText("==\tTDD = BC =="), is("<H2>TDD = BC</H2>"));
 	}
-	
+
 	@Test
-	public void test�A���_�[�o�[�Ŋ���ꂽ��������C�^���b�N�ŏC��() {
+	public void testアンダーバーで括られた文字列をイタリックで修飾() {
 		assertThat(sut.getText("_TDDBC_"), is("<i>TDDBC</i>"));
 		assertThat(sut.getText("_ TDDBC _"), is("<i> TDDBC </i>"));
 		assertThat(sut.getText("__"), is("<i></i>"));
