@@ -29,7 +29,16 @@ public class WikiEngineTest {
 		assertThat(sut.getText("= TDD BC ="), is("<H1>TDD BC</H1>"));
 		assertThat(sut.getText("= TDD = BC ="), is("<H1>TDD = BC</H1>"));
 		assertThat(sut.getText("=\tTDD = BC ="), is("<H1>TDD = BC</H1>"));
+		assertThat(sut.getText("= = TDDBC = ="), is("<H1>= TDDBC =</H1>"));
 	}
 	
-	
+	@Test
+	public void testイコール2つで括られた文字列にH2タグで括られた文字列を返す() {
+		assertThat(sut.getText("== TDDBC =="), is("<H2>TDDBC</H2>"));
+		assertThat(sut.getText("==TDDBC=="), is("<H2>TDDBC</H2>"));
+		assertThat(sut.getText("==   TDDBC   =="), is("<H2>TDDBC</H2>"));
+		assertThat(sut.getText("== TDD BC =="), is("<H2>TDD BC</H2>"));
+		assertThat(sut.getText("== TDD = BC =="), is("<H2>TDD = BC</H2>"));
+		assertThat(sut.getText("==\tTDD = BC =="), is("<H2>TDD = BC</H2>"));
+	}
 }
